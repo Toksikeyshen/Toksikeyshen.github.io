@@ -284,7 +284,13 @@ ul {
 .mobile-menu {
     display: none;
 }
-
+.spis{
+    color:#a9a9a9;
+    text-decoration: none;
+}
+.spis:hover{
+    color: #ffffff;
+}
 @media screen and (max-width: 950px) {
     .first_str {
         grid-template-columns: 1fr;
