@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" src="sty.css">
+</head>
+<body>
+<script>
+    function fun() {
+        fetch(`https://api.github.com/users/${document.getElementById('#users').value}`)
+            .then(response =>{
+                if(response.status!==200){
+                    alert(Error)
+                }
+                else {
+                    return response.json()
+                }
+            })
+            .then(user =>{
+                console.log(user);
+                console.log(user.bio);
+                var container = document.getElementById('root');
+                container.appendChild(document.createElement('br'));
+                var avatar = document.createElement('img');
+                avatar.setAttribute('src', user.avatar_url);
+                container.appendChild(avatar);
+                container.appendChild(document.createElement('br'));
+                if (user.name!==null) {
+                    container.appendChild(document.createElement('h1').appendChild(document.createTextNode(user.name)));
+                    container.appendChild(document.createElement('br'));
+                }
+                container.appendChild(document.createElement('h2').appendChild(document.createTextNode(user.login)));
+                container.appendChild(document.createElement('br'));
+                if (user.bio!==null) {
+                    container.appendChild((document.createElement('h3')).appendChild(document.createTextNode(user.bio)));
+                    container.appendChild(document.createElement('br'));
+                }
+                if (user.company!==null) {
+                    container.appendChild(document.createElement('h2').appendChild(document.createTextNode(user.company)));
+                    container.appendChild(document.createElement('br'));
+                }
+                if (user.location!==null) {
+                    container.appendChild(document.createElement('h2').appendChild(document.createTextNode(user.location)));
+                    container.appendChild(document.createElement('br'));
+                }
+                if (user.email!==null) {
+                    container.appendChild(document.createElement('h3').appendChild(document.createTextNode(user.email)));
+                    container.appendChild(document.createElement('br'));
+                }
+                if (user.social!==undefined) {
+                    container.appendChild(document.createElement('h3').appendChild(document.createTextNode(user.social)));
+                    container.appendChild(document.createElement('br'));
+                }
+            })
+    }
+</script>
+    <input id="#users" type="Text">
+    <input onclick="fun()" type="submit">
+<div id="root">
+
+</div>
+</body>
+</html>
