@@ -284,7 +284,13 @@ ul {
 .mobile-menu {
     display: none;
 }
-
+.spis{
+    color:#a9a9a9;
+    text-decoration: none;
+}
+.spis:hover{
+    color: #ffffff;
+}
 @media screen and (max-width: 950px) {
     .first_str {
         grid-template-columns: 1fr;
@@ -317,9 +323,10 @@ ul {
 
     .mobile-menu {
         background-color: #1e2023;
-        bottom: -800px
+        bottom: 0;
         left: 0;
-        position: absolute;
+        position: fixed;
+        top: 5%;
         right: 0;
     }
 
@@ -332,7 +339,6 @@ ul {
         align-items: center;
         display: flex;
         flex-direction: column;
-        top: 100%;
     }
 
     .button-menu {
