@@ -11,7 +11,7 @@
         fetch(`https://api.github.com/users/${document.getElementById('#users').value}`)
             .then(response =>{
                 if(response.status!==200){
-                    alert(Error)
+                    alert('Error: '+response.status)
                 }
                 else {
                     return response.json()
