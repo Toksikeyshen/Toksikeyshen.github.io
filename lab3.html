@@ -21,12 +21,17 @@
                 console.log(user);
                 console.log(user.bio);
                 var container = document.getElementById('root');
+                Array.from(container.children).map(child => {
+                    child.remove();
+                });
+                container.innerText='';
                 container.appendChild(document.createElement('br'));
                 var avatar = document.createElement('img');
                 avatar.setAttribute('src', user.avatar_url);
                 container.appendChild(avatar);
                 container.appendChild(document.createElement('br'));
                 if (user.name!==null) {
+
                     container.appendChild(document.createElement('h1').appendChild(document.createTextNode(user.name)));
                     container.appendChild(document.createElement('br'));
                 }
