@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" src="sty.css">
+</head>
+<body>
+    <input id="#users" type="Text">
+    <input onclick="fun()" type="submit">
+<div id="root">
+</div>
+    <script>
+        function fun() {
+            fetch(`https://api.github.com/users/${document.getElementById('#users').value}`)
+                .then(response =>{
+                    if(response.status!==200){
+                        alert('Error: '+response.status)
+                    }
+                    else {
+                        return response.json()
+                    }
+                })
+                .then(user =>{
+                    var container = document.getElementById('root');
+                    container.innerText='';
+                    container.appendChild(document.createElement('br'));
+                    var avatar = document.createElement('img');
+                    avatar.setAttribute('src', user.avatar_url);
+                    // container.appendChild(avatar);
+                    if (user.name!==null) {
+                        var name = document.createElement('h2');
+                        name.innerText = user.name;
+                        // container.appendChild(name);
+                    }
+                    var login =document.createElement('p');
+                    login.innerText = user.login;
+                    // container.appendChild(login);
+                    if (user.bio!==null) {
+                        var bio =document.createElement('p');
+                        bio.innerText = user.bio;
+                        // container.appendChild(bio);
+                    }
+                    if (user.company!==null) {
+                        var company =document.createElement('p');
+                        company.innerText = user.company;
+                        // container.appendChild(company);
+                    }
+                    if (user.location!==null) {
+                        var location =document.createElement('p');
+                        location.innerText = user.location;
+                        // container.appendChild(location);
+                    }
+                    if (user.email!==null) {
+                        var email =document.createElement('p');
+                        email.innerText = user.email;
+                        // container.appendChild(email);
+                    }
+                    if (user.social!==undefined) {
+                        var social =document.createElement('p');
+                        social.innerText = user.social;
+                        // container.appendChild(social);
+                    }
+                    var elements =[avatar, name, login, bio, company, location, email, social];
+                    for (let i=0; i<elements.length; i++){
+                        container.appendChild(elements[i]);
+                    }
+                    // container.appendChild(avatar);
+                    // container.appendChild(name);
+                    // container.appendChild(login);
+                    // container.appendChild(bio);
+                    // container.appendChild(company);
+                    // container.appendChild(location);
+                    // container.appendChild(email);
+                    // container.appendChild(social);
+                })
+        }
+    </script>
+</body>
+</html>
